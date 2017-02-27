@@ -28,7 +28,12 @@ class pigs
                 if (DIM > 0)
                     h.insert(vertices[0], vertices[i], vertices[0].weightTo(vertices[i]));
                 else 
-                    h.insert(vertices[0], vertices[i], Math.random());
+                {
+                    if (i == 0)
+                        h.insert(vertices[0], vertices[0], 0);
+                    else
+                        h.insert(vertices[0], vertices[i], Math.random());
+                }
             }
             vertices[0].addToS(); // flag our initial vertex as in our tree
             //System.out.println(h);
@@ -47,7 +52,9 @@ class pigs
                         if (DIM > 0)
                             h.insert(vertices[HE.getV2().getID()], vertices[i], vertices[HE.getV2().getID()].weightTo(vertices[i]));
                         else
+                        {
                             h.insert(vertices[HE.getV2().getID()], vertices[i], Math.random());
+                        }
                     }
 
                 }
@@ -56,7 +63,7 @@ class pigs
             }
             weightavg += weight;
             //System.out.println("vertices are: " + Arrays.toString(vertices));
-            //System.out.println("MST is: " + Arrays.toString(MST.toArray()));
+            System.out.println("MST is: " + Arrays.toString(MST.toArray()));
             System.out.println("MST has weight " + String.format("%.2g", weight));
         }
         System.out.println("Average weight over all trials is " + String.format("%.6g", weightavg/TRIALS));

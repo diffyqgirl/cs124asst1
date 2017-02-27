@@ -26,6 +26,7 @@ public class MinHeap
     // insert v into our this heap with priority p
     public void insert(Vertex v1, Vertex v2, double p)
     {
+        System.out.println("{" + v1 + ", " + v2 + ", " + String.format("%.4g", p) + "}");
         if(ptrs[v2.getID()] == -1) // there is no edge to v2 in the heap
         {
             heap.add(new HeapElt(v1, v2, p));

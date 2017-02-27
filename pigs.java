@@ -25,7 +25,10 @@ class pigs
             //vertex 0 will be our initial vertex. load up the heap with all adjacent edges
             for (int i = 0; i < VNUM; i++)
             {
-                h.insert(vertices[0], vertices[i], vertices[0].weightTo(vertices[i]));
+                if (DIM > 0)
+                    h.insert(vertices[0], vertices[i], vertices[0].weightTo(vertices[i]));
+                else 
+                    h.insert(vertices[0], vertices[i], Math.random());
             }
             vertices[0].addToS(); // flag our initial vertex as in our tree
             //System.out.println(h);
@@ -40,7 +43,13 @@ class pigs
                 for (int i = 0; i < VNUM; i++)
                 {
                     if (!vertices[i].inS())
-                        h.insert(vertices[HE.getV2().getID()], vertices[i], vertices[HE.getV2().getID()].weightTo(vertices[i]));
+                    {
+                        if (DIM > 0)
+                            h.insert(vertices[HE.getV2().getID()], vertices[i], vertices[HE.getV2().getID()].weightTo(vertices[i]));
+                        else
+                            h.insert(vertices[HE.getV2().getID()], vertices[i], Math.random());
+                    }
+
                 }
                 if (h.isEmpty())
                     System.out.println("highest priority edge is " + String.format("%.2g", HE.getPriority()));
